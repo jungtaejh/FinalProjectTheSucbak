@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- member 테스트를 위한 xml 파일 -->
+
+<mapper namespace="mInsert">
+
+	<select id="select" parameterType="String" resultMap="rs">
+		SELECT * FROM member WHERE id = #{id}
+	</select>
+	
+	<!-- 입력한 이름과 DB에 저장되어 있는 아이디가 같은지 비교 -->
+	<select id="nameCheck" parameterType="String" resultMap="rs" resultType="String">
+		SELECT name FROM member WHERE id = #{id}
+	</select>
+	
+	<select resultMap="rs" parameterType="map" id="login">SELECT id FROM member WHERE id = #{id} and pw = #{pw} </select>
+
+	<resultMap type="memDTO" id="rs">
+		<result property="id" column="id" />
+		<result property="pw" column="pw" />
+		<result property="name" column="name" />
+		<result property="tel" column="tel" />
+	</resultMap>
+
+	<select id="selectAll" resultMap="rs">
+		SELECT * FROM member
+	</select>
+
+	<insert id="insert" parameterType="memDTO">
+		INSERT INTO member
+		VALUES(#{id},#{pw},#{name},#{tel})
+	</insert>
+
+	<update id="update" parameterType="memDTO">
+		UPDATE tablename1
+		SET
+		columnname1=#{param1}
+		WHERE
+		columnname2 = #{param2}
+	</update>
+
+	<delete id="delete" parameterType="memDTO">
+		DELETE FROM tablename1 WHERE
+		columnname1 = #{param1}
+	</delete>
+
+</mapper>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board">
+	<!-- 게시글 상세보기 -->
+	<select id="select" parameterType="brdDTO" resultMap="rs">
+		SELECT * FROM board
+		WHERE writer = #{writer}
+		
+	</select>
+
+	<resultMap type="brdDTO" id="rs">
+	
+		<result property="bno" column="bno" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="writer" column="writer" />
+	</resultMap>
+
+	<select id="selectAll" resultMap="rs">
+		SELECT bno, title, content, writer FROM board ORDER BY
+		bno desc
+	</select>
+	<!-- 게시글 작성 -->
+	<insert id="insert" parameterType="brdDTO">
+		INSERT INTO board(bno,title,content,writer)
+     	VALUES(bno_seq.nextval, #{title},#{content},#{writer})
+	</insert>
+	
+	<!-- 게시글 수정처리 -->
+	<update id="update" parameterType="brdDTO">
+		UPDATE board SET
+		title = #{title},
+		content = #{content},
+		writer = #{writer}
+		WHERE writer = #{writer}
+	</update>
+
+	<delete id="delete" parameterType="brdDTO">
+		DELETE FROM board
+		WHERE writer = #{writer}
+	</delete>
+
+</mapper>

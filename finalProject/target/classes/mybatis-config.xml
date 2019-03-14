@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.itbank.mvcproject.ReservationDTO" alias="reservationDTO"></typeAlias>
+		<typeAlias type="com.itbank.mvcproject.MemberDTO" alias="memDTO"/>
+		<typeAlias type="com.itbank.mvcproject.BoardDTO" alias="brdDTO"/>
+		<typeAlias type="com.itbank.mvcproject.HPDTO" alias="hpDTO"/>
+		<typeAlias type="com.itbank.mvcproject.PagingVo" alias="pagingVo"/>
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="mapper/hp.xml" />
+		<mapper resource="mapper/reservation.xml" />
+		<mapper resource="mapper/member.xml"/>
+		<mapper resource="mapper/board.xml"/>
+	</mappers>
+</configuration>
